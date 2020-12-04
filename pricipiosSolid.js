@@ -1,3 +1,35 @@
+// Principios de responsabilidad unica
+/**
+ * @class Coche
+ */
+class Coche {
+  constructor(coche) {
+    this.coche = coche;
+  }
+
+  getMarcaCoche(marca) {
+    return (this.marca = marca);
+  }
+}
+
+/**
+ * @class CocheBD
+ * @extends {Coche}
+ */
+class CocheBD extends Coche {
+  constructor(coche) {
+    super(coche);
+  }
+
+  guardarCocheDB(coche) {
+    return coche;
+  }
+
+  guardarCocheDB(coche) {
+    return coche;
+  }
+}
+
 // Principio de substitución de Liskov
 /**
  * Abstract Class Coche.
