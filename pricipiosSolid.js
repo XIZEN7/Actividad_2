@@ -30,6 +30,40 @@ class CocheBD extends Coche {
   }
 }
 
+
+//Principio Abierto Cerrado
+class Coche {
+  constructor (precio) {
+    this.precio = precio;
+  }
+  precioMedioCoche ();
+}
+//obetenemos precio de cada coche y lo cerramos para evitar datos ambiguos entr clases
+class Renault extends Coche{
+  precioMedioCoche(){ return 12000; }
+}
+
+class Audi extends Coche{
+  precioMedioCoche(){ return 20000; }
+}
+
+class Mercedes extends Coche {
+  precioMedioCoche(){ return 38000; }
+}
+
+const renault = new Renault();
+const audi = new Audi();
+const mercedez = new Mercedez();
+
+function imprimirPrecioMedioCoche(arrayCoches) {
+  for (const coche of arrayCoches) {
+    console.log(coche.precioMedioCoche());
+  }
+
+}
+imprimirPrecioMedioCoche([renault, audi, mercedez]);
+
+
 // Principio de substitución de Liskov
 /**
  * Abstract Class Coche.
@@ -116,39 +150,46 @@ const mercedez = new Mercedez(5);
 imprimirNumAsientos([renault, audi, ford, mercedez]);
 
 
-
-
-//Principio Abierto Cerrado
-class Coche {
-  constructor (precio) {
-    this.precio = precio;
+//Principio de segregación de interfaz
+/**
+ * Abstract Class IAve.
+ *
+ * @class IAve
+ */
+class IAve {
+  constructor(comer, volar, nadar) {
+    this.comer = comer;
+    this.volar = volar;
+    this.nadar = nadar;
   }
-  precioMedioCoche ();
 }
-//obetenemos precio de cada coche y lo cerramos para evitar datos ambiguos entr clases
-class Renault extends Coche{
-  precioMedioCoche(){ return 12000; }
-}
-
-class Audi extends Coche{
-  precioMedioCoche(){ return 20000; }
-}
-
-class Mercedes extends Coche {
-  precioMedioCoche(){ return 38000; }
-}
-
-const renault = new Renault();
-const audi = new Audi();
-const mercedez = new Mercedez();
-
-function imprimirPrecioMedioCoche(arrayCoches) {
-  for (const coche of arrayCoches) {
-    console.log(coche.precioMedioCoche());
+/**
+ * Pinguino.
+ *
+ * @class Pinguino
+ * @extends {Iave}
+ */
+class Pinguino extends IAve {
+  constructor(cualidades) {
+    super(cualidades);
   }
-
+  cualidades() {
+    return this.comer, this.nadar;
+  }
 }
-imprimirPrecioMedioCoche([renault, audi, mercedez]);
+class Loro extends IAve {
+  constructor(cualidades) {
+    super(cualidades);
+  }
+  cualidades() {
+    return this.volar, this.comer;
+  }
+}
+function imprimirCualidades(arrayAve) {
+  for (const iave of arrayAve) {
+    console.log(iave.cualidades());
+  }
+}
 
 
 //Principio de inversión de dependencias
@@ -163,6 +204,6 @@ class Conexion{
 //aqui vemos que ahora para cualquier iteracion de la conexion depende directamente de la clase conexion**
 class AccesoDatos extends Conexion{
     getDatos();
-    setDatos(); 
+    setDatos();
 }
 
