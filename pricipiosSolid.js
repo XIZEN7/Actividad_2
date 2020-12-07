@@ -38,7 +38,7 @@ class Coche {
   }
   precioMedioCoche ();
 }
-//obetenemos precio de cada coche y lo cerramos para evitar datos ambiguos entr clases
+//obtenemos precio de cada coche y lo cerramos para evitar datos ambiguos entre clases
 class Renault extends Coche{
   precioMedioCoche(){ return 12000; }
 }
